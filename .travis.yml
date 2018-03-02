@@ -19,6 +19,7 @@ matrix:
             - xorg-dev
             - libglu1-mesa-dev
             - libegl1-mesa-dev
+            - libosmesa6-dev
             - libasound2
             - alsa-utils
             - alsa-oss

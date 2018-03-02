@@ -21,7 +21,7 @@ download_project(PROJ glfw
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES ON CACHE BOOL "" FORCE)
-set(GLFW_USE_OSMESA OFF CACHE BOOL "" FORCE)
+set(GLFW_USE_OSMESA ON CACHE BOOL "" FORCE)
 
 # compile glfw with current project
 add_subdirectory(${glfw_SOURCE_DIR} ${glfw_BINARY_DIR})
