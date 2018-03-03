@@ -64,9 +64,9 @@ install:
   - |
     mkdir mesa
     pushd mesa && MESA_OUTPUT_PATH=`pwd` && popd
-    wget ftp://ftp.freedesktop.org/pub/mesa/mesa-17.3.6.tar.xz
-    tar xvf mesa-17.3.6.tar.xz
-    cd mesa-17.3.6
+    wget ftp://ftp.freedesktop.org/pub/mesa/17.0.0/mesa-17.0.0.tar.xz
+    tar xvf mesa-17.0.0.tar.xz
+    cd mesa-17.0.0
     ./configure \
         --prefix=$MESA_OUTPUT_PATH \
         --enable-osmesa \
