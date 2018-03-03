@@ -18,20 +18,14 @@ matrix:
             - mesa-utils
             - xorg-dev
             - libglu1-mesa-dev
-            - libegl1-mesa-dev
             - libosmesa6-dev
-            - libasound2
-            - alsa-utils
-            - alsa-oss
-            - libasound2-dev
-            - lcov
       env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && OSMESA=OFF"
 
     - os: osx
       osx_image: xcode8
       env:
-        - MATRIX_EVAL="CC=clang && CXX=clang++"
+        - MATRIX_EVAL="CC=clang && CXX=clang++ && OSMESA=OFF"
 
 before_install:
     - eval "${MATRIX_EVAL}"
@@ -73,10 +67,8 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUILD_TYPE=Release ..
-  - make -j
-    - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
+  - cmake -DOFFSCREEN_MESA=${OSMESA} ..
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
 
 notifications:
   on_success: never
