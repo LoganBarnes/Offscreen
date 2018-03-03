@@ -38,8 +38,7 @@ before_install:
       if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
         brew update
         softwareupdate --install zlib
-        brew install php54 --with-thread-safety
-        brew install php54-pthreads
+        brew install pthreads
       fi
 
 install:
