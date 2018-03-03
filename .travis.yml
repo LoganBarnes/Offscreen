@@ -36,8 +36,11 @@ before_install:
     - |
       if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
         brew update
+        softwareupdate --install zlib
+        brew install php54 --with-thread-safety
+        brew install php54-pthreads
       fi
-    - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then softwareupdate --install zlib; fi;
+
 install:
   ############################################################################
   # All compiled dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
