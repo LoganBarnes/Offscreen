@@ -13,13 +13,14 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-5.0
           packages:
             - g++-6
             - mesa-utils
             - xorg-dev
             - libglu1-mesa-dev
             # - libdrm2
-            - llvm-3.8-dev
+            - clang-5.0
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && OSMESA=ON"
 
