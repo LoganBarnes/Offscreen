@@ -39,7 +39,7 @@ before_install:
       if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
         brew update
         softwareupdate --install zlib
-        brew install pthreads
+        softwareupdate --install pthreads
       fi
 
 install:
