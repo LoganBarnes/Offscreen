@@ -73,7 +73,7 @@ install:
         --disable-driglx-direct \
         --disable-dri \
         --with-gallium-drivers=swrast \
-        --disable-egl
+        --disable-egl \
         --enable-gbm=no
     make -j12
     make install
