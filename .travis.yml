@@ -63,7 +63,7 @@ install:
   - |
     mkdir mesa
     pushd mesa && MESA_OUTPUT_PATH=`pwd` && popd
-    wget ftp://ftp.freedesktop.org/pub/mesa/11.0.0/mesa-11.0.0.tar.xz
+    wget ftp://ftp.freedesktop.org/pub/mesa/mesa-17.3.6.tar.xz
     tar xvf mesa-11.0.0.tar.xz
     cd mesa-11.0.0
     ./configure \
