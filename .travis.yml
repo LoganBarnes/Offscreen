@@ -68,8 +68,7 @@ script:
   - cd build
   - cmake -DOFFSCREEN_MESA=${OSMESA} ..
   - make -j
-  # - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
-  - ./thirdparty/glfw-build/examples/offscreen
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
 
 notifications:
   on_success: never
