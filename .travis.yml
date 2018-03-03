@@ -18,7 +18,7 @@ matrix:
             - mesa-utils
             - xorg-dev
             - libglu1-mesa-dev
-            - libdrm-dev
+            - libdrm2
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && OSMESA=ON"
 
