@@ -78,7 +78,8 @@ install:
         --disable-dri \
         --with-gallium-drivers=swrast \
         --disable-egl \
-        --enable-gbm=no
+        --enable-gbm=no \
+        --enable-llvm-shared-libs=disabled
     make -j12
     make install
     cd ..
