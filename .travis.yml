@@ -35,7 +35,7 @@ before_install:
     ############################################################################
     - |
       if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        brew update
+        brew update && brew install wget
       fi
 
 install:
@@ -58,7 +58,23 @@ install:
     fi
   - cmake --version
 
-
+  ############################################################################
+  # Install OSMesa
+  ############################################################################
+  - |
+    wget ftp://ftp.freedesktop.org/pub/mesa/11.0.0/mesa-11.0.0.tar.xz
+    tar xvf mesa-11.0.0.tar.xz
+    cd mesa-11.0.0
+    ./configure \
+        --prefix=$MESA_OUTPUT_PATH \
+        --enable-osmesa \
+        --disable-driglx-direct \
+        --disable-dri \
+        --with-gallium-drivers=swrast \
+        --disable-egl
+    make -j12
+    make install
+    cd ..
 
 script:
   ############################################################################
@@ -67,9 +83,11 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd build
-  - cmake -DOFFSCREEN_MESA=${OSMESA} ..
+  # - cmake -DOFFSCREEN_MESA=${OSMESA} ..
+  - cmake -DOFFSCREEN_MESA=ON ..
   - make -j
-  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
+  # - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
+  - ./thirdparty/glfw-build/examples/offscreen
 
 notifications:
   on_success: never
