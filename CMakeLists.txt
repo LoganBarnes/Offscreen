@@ -22,8 +22,12 @@ download_project(PROJ glfw
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES ON CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_USE_OSMESA ${OFFSCREEN_MESA} CACHE BOOL "" FORCE)
 
 # compile glfw with current project
 add_subdirectory(${glfw_SOURCE_DIR} ${glfw_BINARY_DIR})
+
+add_executable(offscreen src/offscreen.cpp src/glad/glad.c)
+target_include_directories(offscreen PRIVATE src)
+target_link_libraries(offscreen glfw)
