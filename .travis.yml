@@ -19,8 +19,7 @@ matrix:
             - mesa-utils
             - xorg-dev
             - libglu1-mesa-dev
-            # - libdrm2
-            - clang-5.0
+            - libosmesa-dev
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && OSMESA=ON"
 
@@ -38,8 +37,6 @@ before_install:
     - |
       if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
         brew update
-        softwareupdate --install zlib
-        softwareupdate --install pthreads
       fi
 
 install:
@@ -62,28 +59,6 @@ install:
     fi
   - cmake --version
 
-  ############################################################################
-  # Install OSMesa
-  ############################################################################
-  - |
-    mkdir mesa
-    pushd mesa && MESA_OUTPUT_PATH=`pwd` && popd
-    wget ftp://ftp.freedesktop.org/pub/mesa/17.0.0/mesa-17.0.0.tar.xz
-    tar xvf mesa-17.0.0.tar.xz
-    cd mesa-17.0.0
-    ./configure \
-        --prefix=$MESA_OUTPUT_PATH \
-        --enable-osmesa \
-        --disable-driglx-direct \
-        --disable-dri \
-        --with-gallium-drivers=swrast \
-        --disable-egl \
-        --enable-gbm=no \
-        --enable-llvm-shared-libs=disabled
-    make -j12
-    make install
-    cd ..
-
 script:
   ############################################################################
   # Build project and run CPU based tests
@@ -91,11 +66,9 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd build
-  # - cmake -DOFFSCREEN_MESA=${OSMESA} ..
-  - cmake -DOFFSCREEN_MESA=ON ..
+  - cmake -DOFFSCREEN_MESA=${OSMESA} ..
   - make -j
-  # - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
-  - ./thirdparty/glfw-build/examples/offscreen
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then ./thirdparty/glfw-build/examples/offscreen; fi;
 
 notifications:
   on_success: never
