@@ -20,7 +20,7 @@ matrix:
             - libglu1-mesa-dev
             - libosmesa6-dev
       env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && OSMESA=OFF"
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && OSMESA=ON"
 
     - os: osx
       osx_image: xcode8
